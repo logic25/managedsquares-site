@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Managed Squares</title>
+<meta name="description" content="Managed Squares is an owner's-side construction and development firm in New York: construction management, development with owners, and EV charging on owners' sites.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;1,300&family=Hanken+Grotesk:wght@400;500;600&display=swap">
+<style>
+  /* Layout: a quiet advisory page. Generous white space, one serif voice, thin rules,
+     a single deep-green accent used only for the mark and links. */
+  :root{
+    --ground:#F6F6F3;   /* cool paper */
+    --ink:#14181C;
+    --muted:#5E656C;
+    --hair:#D9DBD6;
+    --accent:#22513F;   /* deep ledger green */
+    --serif:"Spectral", Georgia, "Times New Roman", serif;
+    --sans:"Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+    --step-0:clamp(1rem,.97rem + .15vw,1.08rem);
+    --step-1:clamp(1.2rem,1.1rem + .45vw,1.45rem);
+    --step-2:clamp(1.7rem,1.4rem + 1.3vw,2.4rem);
+    --step-4:clamp(2.7rem,1.8rem + 4.2vw,5.4rem);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){ --ground:#111416; --ink:#E8EAE7; --muted:#9AA1A6; --hair:#2A2F33; --accent:#7FB89E; color-scheme:dark; }
+  }
+  :root[data-theme="dark"]{ --ground:#111416; --ink:#E8EAE7; --muted:#9AA1A6; --hair:#2A2F33; --accent:#7FB89E; color-scheme:dark; }
+  *{box-sizing:border-box; margin:0}
+  body{background:var(--ground); color:var(--ink); font-family:var(--sans); font-size:var(--step-0); line-height:1.65}
+  .page{max-width:1040px; margin:0 auto; padding-block:0 48px; padding-inline:24px}
+  a{color:var(--accent); text-underline-offset:3px}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent); outline-offset:3px}
+
+  header{display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; padding-block:28px; border-bottom:1px solid var(--hair)}
+  .mark{display:flex; align-items:center; gap:12px; font-family:var(--sans); font-weight:600; letter-spacing:.18em; text-transform:uppercase; font-size:.82rem}
+  .mark svg{width:20px; height:20px}
+  .mark rect{fill:none; stroke:var(--ink); stroke-width:1.4}
+  .mark rect.fill{fill:var(--accent); stroke:var(--accent)}
+  nav{display:flex; gap:28px; font-size:.9rem}
+  nav a{color:var(--muted); text-decoration:none} nav a:hover{color:var(--ink)}
+
+  .hero{padding-block:clamp(72px,12vw,150px) clamp(56px,8vw,110px); display:grid; gap:28px; max-width:820px}
+  .hero h1{font-family:var(--serif); font-weight:300; font-size:var(--step-4); line-height:1.02; letter-spacing:-.015em; text-wrap:balance}
+  .hero p{font-size:var(--step-1); color:var(--muted); max-width:32em; line-height:1.5}
+
+  .label{font-size:.74rem; letter-spacing:.16em; text-transform:uppercase; color:var(--muted)}
+  .services{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border-top:1px solid var(--ink)}
+  .svc{padding:28px 28px 36px 0; display:grid; gap:12px; align-content:start; min-width:0}
+  .svc + .svc{padding-left:28px; border-left:1px solid var(--hair)}
+  .svc h2{font-family:var(--serif); font-weight:400; font-size:var(--step-2); line-height:1.1}
+  .svc p{color:var(--muted)}
+  .svc ul{list-style:none; padding:0; display:grid; gap:4px; font-size:.95rem; margin-top:4px}
+  .svc li{padding-left:18px; position:relative}
+  .svc li::before{content:""; position:absolute; left:0; top:.72em; width:8px; height:1px; background:var(--ink)}
+
+  .stance{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.3fr); gap:48px; padding-block:clamp(56px,9vw,110px); border-top:1px solid var(--hair); margin-top:24px}
+  .stance blockquote{font-family:var(--serif); font-style:italic; font-weight:300; font-size:var(--step-2); line-height:1.2; text-wrap:balance}
+  .stance p{color:var(--muted); max-width:36em}
+  .stance p + p{margin-top:14px}
+
+  .gates{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0; border-top:1px solid var(--hair); border-bottom:1px solid var(--hair)}
+  .gate{padding:24px 24px 28px 0; display:grid; gap:8px; min-width:0}
+  .gate + .gate{padding-left:24px; border-left:1px solid var(--hair)}
+  .gate .n{font-family:var(--serif); font-size:2.2rem; line-height:1; color:var(--accent); font-variant-numeric:oldstyle-nums}
+  .gate h3{font-weight:600; font-size:1rem}
+  .gate p{color:var(--muted); font-size:.95rem}
+
+  .contact{display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); gap:48px; padding-block:clamp(56px,9vw,110px) 24px; align-items:end}
+  .contact h2{font-family:var(--serif); font-weight:300; font-size:var(--step-2); line-height:1.15; text-wrap:balance}
+  .rows{display:grid; gap:0; border-top:1px solid var(--ink)}
+  .row{display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; padding-block:14px; border-bottom:1px solid var(--hair)}
+  .row .v{font-size:1.02rem}
+  .copy{font:inherit; font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; background:none; border:1px solid var(--hair); color:var(--muted); padding:4px 10px; cursor:pointer}
+  .copy:hover{border-color:var(--ink); color:var(--ink)}
+
+  footer{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; padding-top:28px; color:var(--muted); font-size:.85rem}
+
+  @media (max-width:820px){
+    .services,.gates,.stance,.contact{grid-template-columns:minmax(0,1fr)}
+    .svc,.svc + .svc,.gate,.gate + .gate{padding-left:0; border-left:none}
+    .svc + .svc,.gate + .gate{border-top:1px solid var(--hair)}
+    .stance,.contact{gap:24px}
+  }
+  @media (prefers-reduced-motion:no-preference){ .copy,nav a{transition:color .15s,border-color .15s} }
+</style>
+
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="mark"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="1" y="1" width="8" height="8"/><rect x="11" y="1" width="8" height="8"/><rect x="1" y="11" width="8" height="8"/><rect class="fill" x="11" y="11" width="8" height="8"/></svg>Managed Squares</div>
+    <nav aria-label="Sections"><a href="#services">Services</a><a href="#approach">Approach</a><a href="#contact">Contact</a></nav>
+  </header>
+
+  <section class="hero">
+    <span class="label">Owner's-side construction and development · New York</span>
+    <h1>We work for the owner.</h1>
+    <p>Construction management, development and site infrastructure, on the owner's side of the table. You bring the property or the capital; we manage the process and see it through.</p>
+  </section>
+
+  <section class="services" id="services" aria-label="Services">
+    <div class="svc">
+      <span class="label">Construction management</span>
+      <h2>Owner's representative</h2>
+      <p>We manage construction on your behalf. We are not the contractor, so our only interest is yours.</p>
+      <ul><li>Bidding and contractor selection</li><li>Budget, schedule and change orders</li><li>Site oversight and reporting</li><li>Permits, inspections and closeout</li></ul>
+    </div>
+    <div class="svc">
+      <span class="label">Development</span>
+      <h2>Developing with owners</h2>
+      <p>For owners who hold land or a building and want to know what it could become.</p>
+      <ul><li>Feasibility in gated steps</li><li>Architect, partner and lender assembly</li><li>Affordable and mixed-income financing</li><li>Zoning and approvals</li></ul>
+    </div>
+    <div class="svc">
+      <span class="label">Energy &amp; infrastructure</span>
+      <h2>Charging on your site</h2>
+      <p>EV fast charging on retail and shopping-center properties, with the owner as partner.</p>
+      <ul><li>Site ranking and power checks</li><li>Utility make-ready and incentives</li><li>Installation management</li><li>Operations and reporting</li></ul>
+    </div>
+  </section>
+
+  <section class="stance" id="approach">
+    <blockquote>Owners carry the risk. Someone should work only for them.</blockquote>
+    <div>
+      <p>Most people on a project are paid by the size of the job. An owner's representative is paid to protect the owner's budget, schedule and decisions. That is the whole job, whether it's one renovation or a development that takes years.</p>
+      <p>We work in stages, so each step answers one question before the next, larger check is written.</p>
+    </div>
+  </section>
+
+  <div class="gates" aria-label="How an engagement runs">
+    <div class="gate"><span class="n">1</span><h3>Study</h3><p>Does it work on paper? A small, fixed budget answers the first question before anything else is spent.</p></div>
+    <div class="gate"><span class="n">2</span><h3>Decide</h3><p>Ground truth, partners and financing lined up. The owner decides with real numbers in hand.</p></div>
+    <div class="gate"><span class="n">3</span><h3>Build</h3><p>Contract, construction and closeout, managed for the owner from start to finish.</p></div>
+  </div>
+
+  <section class="contact" id="contact">
+    <h2>Have a property or a project in mind? Start with a conversation.</h2>
+    <div class="rows">
+      <div class="row"><span class="label">Principal</span><span class="v">Manny Russell, Managing Member</span></div>
+      <div class="row"><span class="label">Email</span><span class="v" id="em">projects@managedsquares.com</span><button class="copy" type="button" data-copy="em">Copy</button></div>
+      <div class="row"><span class="label">Phone</span><span class="v" id="ph">(516) 962-6020</span><button class="copy" type="button" data-copy="ph">Copy</button></div>
+    </div>
+  </section>
+
+  <footer><span>© Managed Squares LLC</span><span>New York, NY</span></footer>
+</div>
+
+<script>
+  document.querySelectorAll('[data-copy]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var el = document.getElementById(b.dataset.copy), t = el.textContent;
+      var done = function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1600); };
+      var pick = function () { var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done, pick); else pick();
+    });
+  });
+</script>
+
+</body>
+</html>
